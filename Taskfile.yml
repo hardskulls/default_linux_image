@@ -1,0 +1,23 @@
+version: "3"
+
+tasks:
+  rebuild_default_docker:
+    desc: "Rebuild default docker image."
+    cmds:
+      - "docker stop default_linux_image"
+      - "docker build -t default_linux_image ."
+      - "docker run -d --rm --name default_linux_image default_linux_image"
+      - "docker exec -it default_linux_image zsh"
+  rebuild_default_docker_no_cache:
+    desc: "Rebuild default docker image with '--no-cache' flag."
+    cmds:
+      - "docker stop default_linux_image"
+      - "docker build --no-cache -t default_linux_image ."
+      - "docker run -d --rm --name default_linux_image default_linux_image"
+      - "docker exec -it default_linux_image zsh"
+  rebuild_default_docker_no_clean:
+    desc: "Rebuild default docker image."
+    cmds:
+      - "docker build -t default_linux_image ."
+      - "docker run -d --rm --name default_linux_image default_linux_image"
+      - "docker exec -it default_linux_image zsh"
